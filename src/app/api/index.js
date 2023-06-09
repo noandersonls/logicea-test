@@ -37,7 +37,7 @@ export const deleteJoke = async (id) => {
   return data;
 };
 
-export async function updateJoke(id, joke) {
+export const updateJoke = async (id, joke) => {
   const data = await fetch(`https://retoolapi.dev/zu9TVE/jokes/${id}`, {
     method: 'PUT',
     headers: {
@@ -51,4 +51,22 @@ export async function updateJoke(id, joke) {
     return response.json();
   });
   return data;
-}
+};
+
+export const createJoke = async (joke) => {
+  const data = await fetch('https://retoolapi.dev/zu9TVE/jokes', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(joke),
+  }).then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP Error POST: ${response.status}`);
+    }
+    return response.json();
+  })
+    .catch((error) => console.error(error));
+
+  return data;
+};

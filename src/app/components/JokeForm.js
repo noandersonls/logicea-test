@@ -1,11 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-loss-of-precision */
 import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { useRouter } from 'next/navigation';
 
 import styles from '../page.module.css';
 
 import {
-  deleteJoke, getJokeById, updateJoke,
+  deleteJoke, getJokeById, updateJoke, createJoke,
 } from '../api';
 
 export default function JokeForm({ id }) {
@@ -16,17 +18,17 @@ export default function JokeForm({ id }) {
     Author: '',
     Body: '',
     Title: '',
-    CreatedAt: '',
+    CreatedAt: Date.now(),
     Views: '',
   });
 
   useEffect(() => {
-    if (id !== 'newjoke') {
+    if (!isNewJoke) {
       const getJoke = async () => {
         const targetJoke = await getJokeById(id);
+
         setJoke(targetJoke);
       };
-
       getJoke();
     }
   }, []);
@@ -38,22 +40,22 @@ export default function JokeForm({ id }) {
     }
   };
 
+  const createNewJoke = async () => {
+    const newJoke = { id: uuidv4(), ...joke };
+    const isCreateSuccess = await createJoke(newJoke);
+    if (isCreateSuccess) {
+      router.push('/jokes');
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isNewJoke) {
-      // Create New Joke Here
+      createNewJoke();
     } else {
       updateJokeById();
     }
   };
-
-  // const createNewJoke = async ( id ) => {
-  //   const newId = uuid here
-  //   const isCreateSuccess = await createJoke(newId, joke)
-  //   if (isCreateSuccess) {
-  //     router.push('/jokes')
-  //   }
-  // }
 
   const handleDeleteJoke = async () => {
     const isDeleteSuccess = await deleteJoke(id);
