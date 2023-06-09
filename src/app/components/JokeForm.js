@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import styles from '../page.module.css';
 
 import {
-  deleteJoke, getJokeById,
+  deleteJoke, getJokeById, updateJoke,
 } from '../api';
 
 export default function JokeForm({ id }) {
@@ -31,22 +31,29 @@ export default function JokeForm({ id }) {
     }
   }, []);
 
-  // const handleSubmit = async () => {
-  //   e.preventDefault();
+  const updateJokeById = async () => {
+    const isUpdateSuccess = await updateJoke(id, joke);
+    if (isUpdateSuccess) {
+      router.push('/jokes');
+    }
+  };
 
-  //   joke.Author === "" || joke.Body === "" || joke.Title === ""
-  //     ? alert("Please fill out all the fields")
-  //     : params?.id
-  //     ? updateJokebyId(Number(params?.id))
-  //     : createNewJoke(joke);
-  // };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (isNewJoke) {
+      // Create New Joke Here
+    } else {
+      updateJokeById();
+    }
+  };
 
-  // const updateJokebyId = async (id: number) => {
-  //   const data = await updateJoke(id, joke);
-  //   if (data.id) {
-  //     setLocation("/jokes");
+  // const createNewJoke = async ( id ) => {
+  //   const newId = uuid here
+  //   const isCreateSuccess = await createJoke(newId, joke)
+  //   if (isCreateSuccess) {
+  //     router.push('/jokes')
   //   }
-  // };
+  // }
 
   const handleDeleteJoke = async () => {
     const isDeleteSuccess = await deleteJoke(id);
@@ -63,7 +70,7 @@ export default function JokeForm({ id }) {
       <h1>
         { isNewJoke ? 'Add New Joke' : 'Edit Joke' }
       </h1>
-      <form className={styles.jokeForm}>
+      <form onSubmit={(e) => handleSubmit(e)} className={styles.jokeForm}>
         <label htmlFor="Title">
           Title
           <input

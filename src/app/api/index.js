@@ -36,3 +36,19 @@ export const deleteJoke = async (id) => {
   });
   return data;
 };
+
+export async function updateJoke(id, joke) {
+  const data = await fetch(`https://retoolapi.dev/zu9TVE/jokes/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(joke),
+  }).then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP Error PUT: ${response.status}`);
+    }
+    return response.json();
+  });
+  return data;
+}
