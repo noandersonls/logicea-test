@@ -1,0 +1,30 @@
+.light-mode {
+  --font-color: #101212;
+  --body-bg-color: #ffffff;
+}
+.dark-mode {
+  --font-color: #cccccc;
+  --body-bg-color: #101212;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--font-color);
+  background-color: var(--body-bg-color);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
