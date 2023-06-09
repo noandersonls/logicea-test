@@ -7,13 +7,13 @@ import {
 const ThemeContext = createContext();
 
 function ThemeProvider({ children }) {
-  const initialTheme = () => localStorage.getItem('LOGICEA_THEME');
+  const initialTheme = () => localStorage.getItem('LOGICEA_THEME') || 'light';
 
   const [theme, setTheme] = useState(initialTheme);
 
   const toggleTheme = () => setTheme((themeSet) => (themeSet === 'light' ? 'dark' : 'light'));
 
-  const contextValue = useMemo(() => ({ theme, toggleTheme }), []);
+  const contextValue = useMemo(() => ({ theme, toggleTheme }), [theme]);
 
   useLayoutEffect(() => {
     localStorage.setItem('LOGICEA_THEME', theme);
