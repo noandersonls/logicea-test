@@ -18,13 +18,6 @@
   font-family: var(--font-mono);
 }
 
-.description a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-}
-
 .description p {
   position: relative;
   margin: 0;
@@ -32,32 +25,6 @@
   background-color: rgba(var(--callout-rgb), 0.5);
   border: 1px solid rgba(var(--callout-border-rgb), 0.3);
   border-radius: var(--border-radius);
-}
-
-.card {
-  padding: 1rem 1.2rem;
-  border-radius: var(--border-radius);
-  background: rgba(var(--card-rgb), 0);
-  border: 1px solid rgba(var(--card-border-rgb), 0);
-  transition: background 200ms, border 200ms;
-}
-
-.card span {
-  display: inline-block;
-  transition: transform 200ms;
-}
-
-.card h2 {
-  font-weight: 600;
-  margin-bottom: 0.7rem;
-}
-
-.card p {
-  margin: 0;
-  opacity: 0.6;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  max-width: 30ch;
 }
 
 .center {
@@ -74,4 +41,29 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+}
+
+.goBack {
+  align-self: start;
+}
+
+.tableJokes {
+  margin-top: 4rem;
+}
+
+
+.jokeForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 4rem;
+}
+
+.jokeForm label {
+  display: flex;
+  flex-direction: column;
+}
+
+.jokeForm button {
+  margin-bottom: 10px;
 }

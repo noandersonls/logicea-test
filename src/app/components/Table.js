@@ -4,6 +4,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+
 import { getJokes } from '../api/index';
 import styles from '../page.module.css';
 
@@ -18,14 +21,15 @@ const viewsColor = (views) => {
 
 export default function Table() {
   const [jokes, setJokes] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     getJokes({ page: 1, limit: 10 }).then((jokesResponse) => setJokes(jokesResponse));
   }, []);
 
   return (
-    <div>
-      <button type="button">Create Joke</button>
+    <div className={styles.tableJokes}>
+      <button type="button" onClick={() => router.push('/jokes/add')}>Add New Joke</button>
       <table>
         <thead>
           <tr>
@@ -35,18 +39,22 @@ export default function Table() {
             <th>Views</th>
           </tr>
         </thead>
-        <tbody>
-          {jokes.map(({
-            id, Title, Author, CreatedAt, Views,
-          }) => (
-            <tr key={id}>
-              <td>{Title}</td>
-              <td>{Author}</td>
-              <td>{CreatedAt}</td>
-              <td style={{ color: viewsColor(Views) }}>{Views}</td>
-            </tr>
-          ))}
-        </tbody>
+        { jokes.length ? (
+          <tbody>
+            {jokes.map(({
+              id, Title, Author, CreatedAt, Views,
+            }) => (
+              <tr key={id}>
+                <td>
+                  <Link href={`/jokes/${id}`}>{Title}</Link>
+                </td>
+                <td>{Author}</td>
+                <td>{CreatedAt}</td>
+                <td style={{ color: viewsColor(Views) }}>{Views}</td>
+              </tr>
+            ))}
+          </tbody>
+        ) : <tbody><tr><td>Loading...</td></tr></tbody>}
       </table>
       <div className={styles.bottomBar}>
         <button type="button" className="previous-button">

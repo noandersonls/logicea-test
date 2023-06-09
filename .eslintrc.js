@@ -18,4 +18,14 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'react/prop-types': 0,
   },
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [
+          ['components', './components'],
+          ['lib', './lib'],
+        ],
+      },
+    },
+  },
 };

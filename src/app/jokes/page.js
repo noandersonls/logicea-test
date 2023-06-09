@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/jsx-no-comment-textnodes */
-
 'use client';
 
 import styles from '../page.module.css';
