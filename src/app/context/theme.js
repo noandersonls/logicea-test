@@ -6,6 +6,10 @@ import {
 
 const ThemeContext = createContext();
 
+// TO - DO
+// Add types to types.js DRY Code
+// localstorage logic inside effect to wait window initialization (prevent undefined)
+
 function ThemeProvider({ children }) {
   const initialTheme = () => localStorage.getItem('LOGICEA_THEME') || 'light';
 

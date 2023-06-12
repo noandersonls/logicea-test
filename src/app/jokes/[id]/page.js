@@ -5,6 +5,9 @@ import JokeForm from '../../components/JokeForm';
 
 import styles from '../../page.module.css';
 
+// TO - DO
+// Protect subroute with localstorage token like /jokes
+
 export default function Form({ params }) {
   const router = useRouter();
   return (

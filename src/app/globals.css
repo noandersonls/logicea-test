@@ -7,6 +7,7 @@
   --body-bg-color: #101212;
 }
 
+/* TO DO: CREATE CSS ARCH (BEM?) OR USE NEXT LAYOUTS */
 * {
   box-sizing: border-box;
   padding: 0;

@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/jsx-no-comment-textnodes */
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -9,6 +6,9 @@ import Link from 'next/link';
 
 import { getJokes } from '../api/index';
 import styles from '../page.module.css';
+
+// TO - DO
+// Pagination and limits to use next, prev button and limit dropdown.
 
 const viewsColor = (views) => {
   // Switch case?
@@ -61,11 +61,13 @@ export default function Table() {
           {'<'}
         </button>
         <div className="dropdown">
-          <label htmlFor="items">Jokes per page: </label>
-          <select id="items">
-            <option value="5">5</option>
-            <option value="10">10</option>
-          </select>
+          <label htmlFor="items">
+            Jokes per page:
+            <select id="items">
+              <option value="5">5</option>
+              <option value="10">10</option>
+            </select>
+          </label>
         </div>
         <button type="button" className="next-button">
           {'>'}

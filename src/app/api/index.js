@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 // Example of clean fetch handling
 export const getJokes = async ({
   page, limit,
